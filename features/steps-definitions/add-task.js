@@ -3,16 +3,23 @@ import assert from 'assert';
 
 Given('Marta has a task list', function () {
     assert.deepStrictEqual(this.taskManager.taskList, []);
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
 });
 
 When('Marta adds the task {string}', function (string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    if (string === null) {
+        string = '';
+    }
+    try {
+        this.taskManager.addTask(string);
+    } catch (error) {
+        this.receivedError = error;
+    }
 });
 
 Then('{string} should be in our task list', function (string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    assert.deepStrictEqual(this.taskManager.taskList[0].description, string);
+});
+
+Then('she should be notified to give a description', function () {
+    assert.equal(this.receivedError.message, 'Please provide a description');
 });
