@@ -59,7 +59,7 @@ describe('TaskManager', () => {
             taskManager.taskList = [testTask];
             taskManager.deleteTask(testTask.id);
 
-            expect(taskManager.taskList).not.toContainEqual(expect.objectContaining({ description: 'buy coffee' }));
+            expect(taskManager.taskList).not.toContainEqual(expect.objectContaining({ id: testTask.id }));
         });
     });
 });
